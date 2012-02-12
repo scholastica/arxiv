@@ -1,0 +1,10 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+
+# Textmate
+tmtags
+
+# Mac OSX hidden files
+.DS_Store
