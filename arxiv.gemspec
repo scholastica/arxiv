@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Cory Schires", "Brian Cody", "Robert Walsh"]
   s.email       = ["coryschires@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Ruby wrapper accessing the arXiv API}
-  s.description = %q{TODO: Makes interacting with arXiv data really easy.}
+  s.summary     = %q{Ruby wrapper accessing the arXiv API}
+  s.description = %q{Makes interacting with arXiv data really easy.}
 
   s.rubyforge_project = "arxiv"
 
