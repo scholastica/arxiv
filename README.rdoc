@@ -39,3 +39,6 @@ Look at a manuscript's categories:
 
 == A note about completeness
 This is very far from a complete wrapper around the arXiv API. We'll be making improvements as needed for our overlay journals. If you'd like something added, send us a note or make a pull request.
+
+== License
+This project uses MIT-LICENSE.
