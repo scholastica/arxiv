@@ -1,6 +1,6 @@
 http://docs.scholastica.s3.amazonaws.com/scholastica_logo.png
 
-A Ruby wrapper for the {arXiv API}[http://arxiv.org/help/api/index]. {arXiv}[[http://arxiv.org/] is an open access pre-print server used primarily in physics, mathematics, computer science, quantitative biology, quantitative finance and statistics.
+A Ruby wrapper for the {arXiv API}[http://arxiv.org/help/api/index]. ArXiv is an open access pre-print server used primarily in physics, mathematics, computer science, quantitative biology, quantitative finance and statistics.
 
 
 == Fetching a manuscript
