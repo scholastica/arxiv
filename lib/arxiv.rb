@@ -20,6 +20,9 @@ module Arxiv
   ID_FORMAT = /^\d{4}\.\d{4}(?:v\d+)?$/
 
   def self.get(id)
+
+    id = parse_arxiv_id(id)
+
     raise Arxiv::Error::MalformedId, "Manuscript ID format is invalid" unless id =~ ID_FORMAT
 
     url = ::URI.parse("http://export.arxiv.org/api/query?id_list=#{id}")
@@ -28,6 +31,19 @@ module Arxiv
 
     raise Arxiv::Error::ManuscriptNotFound, "Manuscript #{id} doesn't exist on arXiv" if manuscript.title.nil?
     manuscript
+  end
+
+  private
+
+  def self.parse_arxiv_id(id)
+    if id =~ ID_FORMAT
+      id
+    elsif id =~ /arxiv.org/
+      match = id.match(/[^\/]+$/)
+      match[0] if match
+    else
+      id
+    end
   end
 
 end
