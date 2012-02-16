@@ -20,12 +20,20 @@ module Arxiv
       created_at != updated_at
     end
 
+    def legacy_article?
+      arxiv_url =~ Arxiv::LEGACY_URL_FORMAT
+    end
+
     def arxiv_id
-      arxiv_url.match(/([^\/]+)v\d+$/)[1]
+      arxiv_versioned_id.match(/([^v]+)v\d+$/)[1]
     end
 
     def arxiv_versioned_id
-      arxiv_url.match(/([^\/]+)$/)[1]
+      if legacy_article?
+        arxiv_url.match(/(#{Arxiv::LEGACY_URL_FORMAT})/)[1]
+      else
+        arxiv_url.match(/(#{Arxiv::CURRENT_URL_FORMAT})/)[1]
+      end
     end
 
     def version

@@ -17,13 +17,26 @@ module Arxiv
     class MalformedId < StandardError ; end
   end
 
-  ID_FORMAT = /^\d{4}\.\d{4}(?:v\d+)?$/
+  # In 2007, the ArXiv API changed document ID formats:
+  #
+  #    http://arxiv.org/abs/math/0510097v1  (legacy)
+  #    http://arxiv.org/abs/1202.0819v1     (current)
+  #
+  # These constants help us deal with both use cases.
+  #
+  LEGACY_URL_FORMAT = /[^\/]+\/\d+(?:v\d+)?$/
+  CURRENT_URL_FORMAT = /\d{4}\.\d{4}(?:v\d+)?$/
 
-  def self.get(id)
+  LEGACY_ID_FORMAT = /^#{LEGACY_URL_FORMAT}/
+  ID_FORMAT = /^#{CURRENT_URL_FORMAT}/
 
-    id = parse_arxiv_id(id)
+  def self.get(identifier)
 
-    raise Arxiv::Error::MalformedId, "Manuscript ID format is invalid" unless id =~ ID_FORMAT
+    id = parse_arxiv_identifier(identifier)
+
+    unless id =~ ID_FORMAT || id =~ LEGACY_ID_FORMAT
+      raise Arxiv::Error::MalformedId, "Manuscript ID format is invalid"
+    end
 
     url = ::URI.parse("http://export.arxiv.org/api/query?id_list=#{id}")
     response = ::Nokogiri::XML(open(url)).remove_namespaces!
@@ -35,15 +48,32 @@ module Arxiv
 
   private
 
-  def self.parse_arxiv_id(id)
-    if id =~ ID_FORMAT
-      id
-    elsif id =~ /arxiv.org/
-      match = id.match(/[^\/]+$/)
-      match[0] if match
+  def self.parse_arxiv_identifier(identifier)
+    if valid_id?(identifier)
+      identifier
+    elsif valid_url?(identifier)
+      format = legacy_url?(identifier) ? LEGACY_URL_FORMAT : CURRENT_URL_FORMAT
+      identifier.match(/(#{format})/)[1]
     else
-      id
+      identifier # probably an error
     end
   end
+
+  def self.valid_id?(identifier)
+    identifier =~ ID_FORMAT || identifier =~ LEGACY_ID_FORMAT
+  end
+
+  def self.valid_url?(identifier)
+    identifier =~ LEGACY_URL_FORMAT || identifier =~ CURRENT_URL_FORMAT
+  end
+
+  def self.legacy_url?(identifier)
+    identifier =~ LEGACY_URL_FORMAT
+  end
+
+
+
+
+
 
 end

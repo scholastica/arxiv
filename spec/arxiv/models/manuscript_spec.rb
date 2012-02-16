@@ -2,7 +2,10 @@ require 'spec_helper'
 
 module Arxiv
   describe Manuscript do
-    before(:all) { @manuscript = Arxiv.get('1202.0819') }
+    before(:all) do
+      @manuscript = Arxiv.get('1202.0819')
+      @legacy_manuscript = Arxiv.get('math.DG/0510097v1')
+    end
 
     describe "arxiv_url" do
       it "should fetch the link to the manuscript's page on arXiv" do
@@ -47,20 +50,29 @@ module Arxiv
     end
 
     describe "arxiv_versioned_id" do
-      it "should return the unique document id used by arXiv" do
+      it "should return the unique versioned document id used by arXiv for a current manuscript" do
         @manuscript.arxiv_versioned_id.should == '1202.0819v1'
+      end
+      it "should return the unique versioned document id used by arXiv for a legacy manuscript" do
+        @legacy_manuscript.arxiv_versioned_id.should == 'math/0510097v1'
       end
     end
 
     describe "arxiv_id" do
-      it "should return the unique document id used by arXiv" do
+      it "should return the unique document id used by arXiv for a current manuscript" do
         @manuscript.arxiv_id.should == '1202.0819'
+      end
+      it "should return the unique document id used by arXiv for a legacy manuscript" do
+        @legacy_manuscript.arxiv_id.should == 'math/0510097'
       end
     end
 
     describe "version" do
-      it "should return the manuscript's version number" do
+      it "should return the manuscript's version number for a current manuscript" do
         @manuscript.version.should == 1
+      end
+      it "should return the manuscript's version number for a legacy manuscript" do
+        @legacy_manuscript.version.should == 1
       end
     end
 
@@ -96,10 +108,18 @@ module Arxiv
     end
 
     describe "primary_category" do
-      it "should description" do
+      it "should description return the manuscript's primary category" do
         @manuscript.primary_category.abbreviation.should == "astro-ph.IM"
       end
     end
 
+    describe "legacy_article?" do
+      it "should return true if the manuscript was upload while the legacy API was still in use" do
+        @legacy_manuscript.should be_legacy_article
+      end
+      it "should return false if the manuscript was uploaded after the transition to the new API" do
+        @manuscript.should_not be_legacy_article
+      end
+    end
   end
 end

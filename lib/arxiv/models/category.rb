@@ -24,7 +24,7 @@ module Arxiv
     end
 
     def long_description
-      "#{abbreviation} (#{description})"
+      description ? "#{abbreviation} (#{description})" : abbreviation
     end
 
   end
