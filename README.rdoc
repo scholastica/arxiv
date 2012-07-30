@@ -1,4 +1,4 @@
-http://docs.scholastica.s3.amazonaws.com/arxiv-logo.png
+http://docs.scholastica.s3.amazonaws.com/scholastica_logo.png
 
 A Ruby wrapper for the {arXiv API}[http://arxiv.org/help/api/index]. ArXiv is an open access pre-print server used primarily in physics, mathematics, computer science, quantitative biology, quantitative finance and statistics.
 
@@ -37,7 +37,6 @@ Look at a manuscript's categories:
   # a single category
   manuscript.primary_category.name          # => "astro-ph.IM"
   manuscript.primary_category.description   # => "Physics - Instrumentation and Methods for Astrophysics"
-
 
 == License
 Timber is an open source project built by {Scholastica}[https://scholasticahq.com] under the {MIT-LICENSE}[https://github.com/scholastica/timber/blob/master/MIT-LICENSE].
