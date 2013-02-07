@@ -91,7 +91,7 @@ module Arxiv
 
     describe "pdf_url" do
       it "should return the url to download the manuscript in PDF format" do
-        @manuscript.pdf_url.should == 'http://arxiv.org/pdf/1202.0819v1'
+        @manuscript.pdf_url.should == 'http://arxiv.org/pdf/1202.0819v1.pdf'
       end
     end
 
