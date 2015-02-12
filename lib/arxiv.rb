@@ -71,9 +71,4 @@ module Arxiv
     identifier =~ LEGACY_URL_FORMAT
   end
 
-
-
-
-
-
 end
