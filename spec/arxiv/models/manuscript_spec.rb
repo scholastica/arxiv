@@ -43,7 +43,7 @@ module Arxiv
 
     describe "revision?" do
       it "should return true if the manuscript has been revised" do
-        manuscript.should_not be_revision
+        expect(manuscript).not_to be_revision
       end
     end
 
@@ -101,7 +101,7 @@ module Arxiv
 
     describe "categories" do
       it "should fetch the manuscript's categories" do
-        expectd(manuscript.categories.map(&:abbreviation)).to include("astro-ph.IM", "astro-ph.CO", "astro-ph.EP")
+        expect(manuscript.categories.map(&:abbreviation)).to include("astro-ph.IM", "astro-ph.CO", "astro-ph.EP")
       end
     end
 

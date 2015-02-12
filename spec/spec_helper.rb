@@ -1,5 +1,5 @@
 require 'arxiv'
 
 RSpec.configure do |config|
-  # some (optional) config here
+  config.raise_errors_for_deprecations!
 end
