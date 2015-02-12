@@ -30,45 +30,47 @@ module Arxiv
   LEGACY_ID_FORMAT = /^#{LEGACY_URL_FORMAT}/
   ID_FORMAT = /^#{CURRENT_URL_FORMAT}/
 
-  def self.get(identifier)
+  class << self
+    def get(identifier)
 
-    id = parse_arxiv_identifier(identifier)
+      id = parse_arxiv_identifier(identifier)
 
-    unless id =~ ID_FORMAT || id =~ LEGACY_ID_FORMAT
-      raise Arxiv::Error::MalformedId, "Manuscript ID format is invalid"
+      unless id =~ ID_FORMAT || id =~ LEGACY_ID_FORMAT
+        raise Arxiv::Error::MalformedId, "Manuscript ID format is invalid"
+      end
+
+      url = ::URI.parse("http://export.arxiv.org/api/query?id_list=#{id}")
+      response = ::Nokogiri::XML(open(url)).remove_namespaces!
+      manuscript = Arxiv::Manuscript.parse(response.to_s, single: id)
+
+      raise Arxiv::Error::ManuscriptNotFound, "Manuscript #{id} doesn't exist on arXiv" if manuscript.title.nil?
+      manuscript
     end
 
-    url = ::URI.parse("http://export.arxiv.org/api/query?id_list=#{id}")
-    response = ::Nokogiri::XML(open(url)).remove_namespaces!
-    manuscript = Arxiv::Manuscript.parse(response.to_s, single: id)
+    private
 
-    raise Arxiv::Error::ManuscriptNotFound, "Manuscript #{id} doesn't exist on arXiv" if manuscript.title.nil?
-    manuscript
-  end
-
-  private
-
-  def self.parse_arxiv_identifier(identifier)
-    if valid_id?(identifier)
-      identifier
-    elsif valid_url?(identifier)
-      format = legacy_url?(identifier) ? LEGACY_URL_FORMAT : CURRENT_URL_FORMAT
-      identifier.match(/(#{format})/)[1]
-    else
-      identifier # probably an error
+    def parse_arxiv_identifier(identifier)
+      if valid_id?(identifier)
+        identifier
+      elsif valid_url?(identifier)
+        format = legacy_url?(identifier) ? LEGACY_URL_FORMAT : CURRENT_URL_FORMAT
+        identifier.match(/(#{format})/)[1]
+      else
+        identifier # probably an error
+      end
     end
-  end
 
-  def self.valid_id?(identifier)
-    identifier =~ ID_FORMAT || identifier =~ LEGACY_ID_FORMAT
-  end
+    def valid_id?(identifier)
+      identifier =~ ID_FORMAT || identifier =~ LEGACY_ID_FORMAT
+    end
 
-  def self.valid_url?(identifier)
-    identifier =~ LEGACY_URL_FORMAT || identifier =~ CURRENT_URL_FORMAT
-  end
+    def valid_url?(identifier)
+      identifier =~ LEGACY_URL_FORMAT || identifier =~ CURRENT_URL_FORMAT
+    end
 
-  def self.legacy_url?(identifier)
-    identifier =~ LEGACY_URL_FORMAT
+    def legacy_url?(identifier)
+      identifier =~ LEGACY_URL_FORMAT
+    end
   end
 
 end
