@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Arxiv::VERSION
   s.authors     = ["Cory Schires", "Brian Cody", "Robert Walsh"]
   s.email       = ["coryschires@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/scholastica/arxiv"
   s.summary     = %q{Ruby wrapper accessing the arXiv API}
   s.description = %q{Makes interacting with arXiv data really easy.}
 
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
