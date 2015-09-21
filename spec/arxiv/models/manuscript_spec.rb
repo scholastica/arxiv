@@ -78,8 +78,7 @@ module Arxiv
 
     describe "content_types" do
       it "return an array of available content_types" do
-        @manuscript.content_types.should include("text/html", "application/pdf")
-        @manuscript.content_types.should have(2).content_types
+        expect(@manuscript.content_types).to match_array(["text/html", "application/pdf"])
       end
     end
 
@@ -97,7 +96,7 @@ module Arxiv
 
     describe "authors" do
       it "should return an array of all the manuscript's authors" do
-        @manuscript.authors.should have(5).authors
+        expect(@manuscript.authors.size).to eql(5)
       end
     end
 
