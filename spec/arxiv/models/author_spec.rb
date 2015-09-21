@@ -6,13 +6,13 @@ module Arxiv
 
     describe "name" do
       it "should return the author's name" do
-        @author.name.should == "Michael T. Murphy"
+        expect(@author.name).to eql("Michael T. Murphy")
       end
     end
 
     describe "affiliations" do
       it "should return an array of the author's affiliations" do
-        @author.affiliations.should include("Swinburne University of Technology")
+        expect(@author.affiliations).to include("Swinburne University of Technology")
       end
     end
 

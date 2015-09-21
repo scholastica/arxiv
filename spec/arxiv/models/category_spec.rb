@@ -9,22 +9,22 @@ module Arxiv
 
     describe "abbreviation" do
       it "should fetch the category's abbreviation" do
-        @category.abbreviation.should == "astro-ph.IM"
+        expect(@category.abbreviation).to eql("astro-ph.IM")
       end
     end
 
     describe "description" do
       it "should fetch the category's description" do
-        @category.description.should == "Physics - Instrumentation and Methods for Astrophysics"
+        expect(@category.description).to eql("Physics - Instrumentation and Methods for Astrophysics")
       end
     end
 
     describe "long_description" do
       it "should fetch the category's abbreviation and description"do
-        @category.long_description.should == "astro-ph.IM (Physics - Instrumentation and Methods for Astrophysics)"
+        expect(@category.long_description).to eql("astro-ph.IM (Physics - Instrumentation and Methods for Astrophysics)")
       end
       it "should just return the abbreviation when a description cannot be found (e.g. MSC classes)"do
-        @legacy_category.long_description.should == "58D15 (Primary); 58B10 (Secondary)"
+        expect(@legacy_category.long_description).to eql("58D15 (Primary); 58B10 (Secondary)")
       end
     end
 
