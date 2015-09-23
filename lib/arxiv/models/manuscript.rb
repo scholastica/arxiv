@@ -41,7 +41,7 @@ module Arxiv
     end
 
     def content_types
-      links.map(&:content_type)
+      links.map(&:content_type).compact.delete_if { |t| t =~ /^\s*$/ }
     end
 
     def available_in_pdf?

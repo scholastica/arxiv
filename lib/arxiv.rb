@@ -31,7 +31,6 @@ module Arxiv
   ID_FORMAT = /^#{CURRENT_URL_FORMAT}/
 
   def self.get(identifier)
-
     id = parse_arxiv_identifier(identifier)
 
     unless id =~ ID_FORMAT || id =~ LEGACY_ID_FORMAT
@@ -70,10 +69,4 @@ module Arxiv
   def self.legacy_url?(identifier)
     identifier =~ LEGACY_URL_FORMAT
   end
-
-
-
-
-
-
 end

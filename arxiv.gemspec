@@ -5,7 +5,7 @@ require "arxiv/version"
 Gem::Specification.new do |s|
   s.name        = "arxiv"
   s.version     = Arxiv::VERSION
-  s.authors     = ["Cory Schires", "Brian Cody", "Robert Walsh"]
+  s.authors     = ["Scholastica"]
   s.email       = ["coryschires@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{Ruby wrapper accessing the arXiv API}
@@ -23,5 +23,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "nokogiri"
 
   s.add_development_dependency "rspec"
-
+  s.add_development_dependency "pry"
 end
