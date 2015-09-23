@@ -7,10 +7,10 @@ Gem::Specification.new do |s|
   s.version     = Arxiv::VERSION
   s.authors     = ["Scholastica"]
   s.email       = ["coryschires@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{Ruby wrapper accessing the arXiv API}
-  s.description = %q{Makes interacting with arXiv data really easy.}
-
+  s.homepage    = "https://github.com/scholastica/arxiv"
+  s.summary     = "Ruby wrapper accessing the arXiv API"
+  s.description = "Makes interacting with arXiv data really easy."
+  s.licenses    = ['MIT']
   s.rubyforge_project = "arxiv"
 
   s.files         = `git ls-files`.split("\n")
@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "happymapper", '~> 0.4', '>= 0.4.1'
   s.add_runtime_dependency "nokogiri",    '~> 1.6', '>= 1.6.6.2'
 
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "pry"
+  s.add_development_dependency "rspec", '~> 0'
+  s.add_development_dependency "pry",   '~> 0'
 end
