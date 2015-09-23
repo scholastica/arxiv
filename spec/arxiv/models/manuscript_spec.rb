@@ -53,6 +53,7 @@ module Arxiv
       it "should return the unique versioned document id used by arXiv for a current manuscript" do
         expect(@manuscript.arxiv_versioned_id).to eql('1202.0819v1')
       end
+
       it "should return the unique versioned document id used by arXiv for a legacy manuscript" do
         expect(@legacy_manuscript.arxiv_versioned_id).to eql('math/0510097v1')
       end
@@ -62,6 +63,7 @@ module Arxiv
       it "should return the unique document id used by arXiv for a current manuscript" do
         expect(@manuscript.arxiv_id).to eql('1202.0819')
       end
+
       it "should return the unique document id used by arXiv for a legacy manuscript" do
         expect(@legacy_manuscript.arxiv_id).to eql('math/0510097')
       end
@@ -71,6 +73,7 @@ module Arxiv
       it "should return the manuscript's version number for a current manuscript" do
         expect(@manuscript.version).to eql(1)
       end
+
       it "should return the manuscript's version number for a legacy manuscript" do
         expect(@legacy_manuscript.version).to eql(1)
       end
@@ -108,7 +111,7 @@ module Arxiv
     end
 
     describe "primary_category" do
-      it "should description return the manuscript's primary category" do
+      it "should return the manuscript's primary category" do
         expect(@manuscript.primary_category.abbreviation).to eql("astro-ph.IM")
       end
     end
@@ -117,6 +120,7 @@ module Arxiv
       it "should return true if the manuscript was upload while the legacy API was still in use" do
         expect(@legacy_manuscript).to be_legacy_article
       end
+
       it "should return false if the manuscript was uploaded after the transition to the new API" do
         expect(@manuscript).not_to be_legacy_article
       end

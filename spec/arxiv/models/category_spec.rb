@@ -23,7 +23,8 @@ module Arxiv
       it "should fetch the category's abbreviation and description"do
         expect(@category.long_description).to eql("astro-ph.IM (Physics - Instrumentation and Methods for Astrophysics)")
       end
-      it "should just return the abbreviation when a description cannot be found (e.g. MSC classes)"do
+
+      it "should return only the abbreviation when a description cannot be found (e.g. MSC classes)"do
         expect(@legacy_category.long_description).to eql("58D15 (Primary); 58B10 (Secondary)")
       end
     end
