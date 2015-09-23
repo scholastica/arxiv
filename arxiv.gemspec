@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  s.add_runtime_dependency "happymapper"
-  s.add_runtime_dependency "nokogiri"
+  s.add_runtime_dependency "happymapper", '~> 0.4', '>= 0.4.1'
+  s.add_runtime_dependency "nokogiri",    '~> 1.6', '>= 1.6.6.2'
 
   s.add_development_dependency "rspec"
   s.add_development_dependency "pry"
