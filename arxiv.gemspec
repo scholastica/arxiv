@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["coryschires@gmail.com"]
   s.homepage    = "https://github.com/scholastica/arxiv"
   s.summary     = "Ruby wrapper accessing the arXiv API"
-  s.description = "Makes interacting with arXiv data really easy."
+  s.description = "Easily access arXiv article info – including authors, categories, links, etc."
   s.licenses    = ['MIT']
   s.rubyforge_project = "arxiv"
 

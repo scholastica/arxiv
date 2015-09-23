@@ -25,7 +25,7 @@ module Arxiv
   # These constants help us deal with both use cases.
   #
   LEGACY_URL_FORMAT = /[^\/]+\/\d+(?:v\d+)?$/
-  CURRENT_URL_FORMAT = /\d{4}\.\d{4}(?:v\d+)?$/
+  CURRENT_URL_FORMAT = /\d{4,}\.\d{4,}(?:v\d+)?$/
 
   LEGACY_ID_FORMAT = /^#{LEGACY_URL_FORMAT}/
   ID_FORMAT = /^#{CURRENT_URL_FORMAT}/

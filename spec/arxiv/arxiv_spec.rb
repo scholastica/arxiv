@@ -20,6 +20,10 @@ module Arxiv
       it "should fetch a manuscript when passed full URL" do
         expect(Arxiv.get('http://arxiv.org/abs/1202.0819')).to fetch("Laser frequency comb techniques for precise astronomical spectroscopy")
       end
+
+      it "should fetch a manuscript when passed an id with more than 4 digits" do
+        expect(Arxiv.get('1509.06369')).to fetch("Tidal debris morphology and the orbits of satellite galaxies")
+      end
     end
 
     context "when using the legacy arXiv id format" do
