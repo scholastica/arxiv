@@ -1,0 +1,5 @@
+# deployment:
+#   production:
+#     branch: master
+#     commands:
+#       TODO: Figure out how to deploy to rubygems.org
