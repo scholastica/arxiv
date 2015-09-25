@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "happymapper", '~> 0.4', '>= 0.4.1'
   s.add_runtime_dependency "nokogiri",    '~> 1.6', '>= 1.6.6.2'
 
-  s.add_development_dependency "rspec", '~> 0'
-  s.add_development_dependency "pry",   '~> 0'
+  s.add_development_dependency "rspec", '~> 3.3', '>= 3.3.0'
+  s.add_development_dependency "pry",   '~> 0.10.2'
 end

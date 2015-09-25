@@ -1,5 +1,10 @@
-# deployment:
-#   production:
-#     branch: master
-#     commands:
-#       TODO: Figure out how to deploy to rubygems.org
+dependencies:
+  pre:
+    - "echo -e '---\n:rubygems_api_key: '$RUBYGEMS_API_KEY > ~/.gem/credentials"
+    - chmod 0600 ~/.gem/credentials
+deployment:
+  production:
+    branch: master
+    commands:
+      - gem build arxiv.gemspec
+      - gem push `ls | grep *.gem`
