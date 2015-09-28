@@ -5,7 +5,7 @@ module Arxiv
     tag 'entry'
     element :arxiv_url, String, tag: 'id'
     element :created_at, DateTime, tag: 'published'
-    element :updated_at, DateTime, tag: 'published'
+    element :updated_at, DateTime, tag: 'updated'
     element :title, StringScrubber, parser: :scrub
     element :summary, StringScrubber, parser: :scrub
     element :comment, StringScrubber, parser: :scrub
