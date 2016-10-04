@@ -9,7 +9,7 @@ module Arxiv
 
     describe "arxiv_url" do
       it "should fetch the link to the manuscript's page on arXiv" do
-        expect(@manuscript.arxiv_url).to eql("http://arxiv.org/abs/1202.0819v1")
+        expect(@manuscript.arxiv_url).to eql("https://arxiv.org/abs/1202.0819v1")
       end
     end
 
