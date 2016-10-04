@@ -19,8 +19,8 @@ module Arxiv
 
   # In 2007, the ArXiv API changed document ID formats:
   #
-  #    http://arxiv.org/abs/math/0510097v1  (legacy)
-  #    http://arxiv.org/abs/1202.0819v1     (current)
+  #    https://arxiv.org/abs/math/0510097v1  (legacy)
+  #    https://arxiv.org/abs/1202.0819v1     (current)
   #
   # These constants help us deal with both use cases.
   #
@@ -45,8 +45,6 @@ module Arxiv
     manuscript
   end
 
-  private
-
   def self.parse_arxiv_identifier(identifier)
     if valid_id?(identifier)
       identifier
@@ -57,16 +55,20 @@ module Arxiv
       identifier # probably an error
     end
   end
+  private_class_method :parse_arxiv_identifier
 
   def self.valid_id?(identifier)
     identifier =~ ID_FORMAT || identifier =~ LEGACY_ID_FORMAT
   end
+  private_class_method :valid_id?
 
   def self.valid_url?(identifier)
     identifier =~ LEGACY_URL_FORMAT || identifier =~ CURRENT_URL_FORMAT
   end
+  private_class_method :valid_url?
 
   def self.legacy_url?(identifier)
     identifier =~ LEGACY_URL_FORMAT
   end
+  private_class_method :legacy_url?
 end

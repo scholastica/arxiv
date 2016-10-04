@@ -3,7 +3,7 @@ module Arxiv
     include HappyMapper
 
     tag 'entry'
-    element :arxiv_url, String, tag: 'id'
+    element :arxiv_url, StringScrubber, tag: 'id', parser: :force_ssl_url
     element :created_at, DateTime, tag: 'published'
     element :updated_at, DateTime, tag: 'updated'
     element :title, StringScrubber, parser: :scrub
