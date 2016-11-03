@@ -38,3 +38,4 @@ Look at a manuscript's categories:
 
 ### License
 This is an open source project built by {Scholastica}[https://scholasticahq.com] under the {MIT-LICENSE}[https://github.com/scholastica/timber/blob/master/MIT-LICENSE].
+
