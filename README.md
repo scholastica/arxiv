@@ -37,5 +37,5 @@ Look at a manuscript's categories:
     manuscript.primary_category.description   # => "Physics - Instrumentation and Methods for Astrophysics"
 
 ### License
-This is an open source project built by {Scholastica}[https://scholasticahq.com] under the {MIT-LICENSE}[https://github.com/scholastica/timber/blob/master/MIT-LICENSE].
+This is an open source project built by [Scholastica](https://scholasticahq.com) under the [MIT-LICENSE](https://github.com/scholastica/timber/blob/master/MIT-LICENSE).
 
