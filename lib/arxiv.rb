@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'happymapper'
+require 'full-name-splitter'
 
 require 'arxiv/version'
 require 'arxiv/string_scrubber'
