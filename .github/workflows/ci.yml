@@ -1,5 +1,6 @@
 name: ci
-on: [push]
+on:
+  push:
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -15,7 +16,7 @@ jobs:
 
   deploy:
     name: Build and publish gem
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && needs.test.result == 'success'
     needs: test
     runs-on: ubuntu-latest
 
@@ -25,8 +26,9 @@ jobs:
         uses: ruby/setup-ruby@477b21f02be01bcb8030d50f37cfec92bfa615b6
       - name: Publish to GPR
         run: |
-          curl -u coryschires:${ RUBYGEMS_API_KEY } https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials; chmod 0600 ~/.gem/credentials
+          curl -u $RUBYGEMS_USERNAME:$RUBYGEMS_PASSWORD https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials; chmod 0600 ~/.gem/credentials
           gem build arxiv.gemspec
           gem push `ls | grep *.gem`
-        # env:
-        #   GEM_HOST_API_KEY: "Bearer ${{secrets.GH_TOKEN}}"
+        env:
+          RUBYGEMS_USERNAME: "${{ secrets.RUBYGEMS_USERNAME }}"
+          RUBYGEMS_PASSWORD: "${{ secrets.RUBYGEMS_PASSWORD }}"
