@@ -39,7 +39,7 @@ module Arxiv
     end
 
     url = ::URI.parse("http://export.arxiv.org/api/query?id_list=#{id}")
-    response = ::Nokogiri::XML(open(url)).remove_namespaces!
+    response = ::Nokogiri::XML(URI.open(url)).remove_namespaces!
     manuscript = Arxiv::Manuscript.parse(response.to_s, single: id)
 
     raise Arxiv::Error::ManuscriptNotFound, "Manuscript #{id} doesn't exist on arXiv" if manuscript.title.nil?
