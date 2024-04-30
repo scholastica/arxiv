@@ -51,10 +51,8 @@ module Arxiv
     def pdf_url
       if available_in_pdf?
         url = links.find { |l| l.content_type == "application/pdf" }.url
-        url = StringScrubber.force_ssl_url(url)
         "#{url}.pdf" unless url =~ /\.pdf$/
       end
     end
-
   end
 end
