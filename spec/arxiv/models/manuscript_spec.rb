@@ -93,7 +93,7 @@ module Arxiv
 
     describe "pdf_url" do
       it "should return the url to download the manuscript in PDF format" do
-        expect(@manuscript.pdf_url).to eql('https://arxiv.org/pdf/1202.0819v1.pdf')
+        expect(@manuscript.pdf_url).to eql('https://arxiv.org/pdf/1202.0819v1')
       end
     end
 
