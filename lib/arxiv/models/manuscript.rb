@@ -50,8 +50,7 @@ module Arxiv
 
     def pdf_url
       if available_in_pdf?
-        url = links.find { |l| l.content_type == "application/pdf" }.url
-        "#{url}.pdf" unless url =~ /\.pdf$/
+        links.find { |l| l.content_type == "application/pdf" }.url
       end
     end
   end
