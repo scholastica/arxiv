@@ -42,7 +42,7 @@ module Arxiv
     response = ::Nokogiri::XML(URI.open(url)).remove_namespaces!
     manuscript = Arxiv::Manuscript.parse(response.to_s, single: id)
 
-    raise Arxiv::Error::ManuscriptNotFound, "Manuscript #{id} doesn't exist on arXiv" if manuscript.title.nil?
+    raise Arxiv::Error::ManuscriptNotFound, "Manuscript #{id} doesn't exist on arXiv" if manuscript&.title.nil?
     manuscript
   end
 
