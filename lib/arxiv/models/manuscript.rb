@@ -44,6 +44,10 @@ module Arxiv
       links.map(&:content_type).compact.delete_if { |t| t =~ /^\s*$/ }
     end
 
+    def zip_url
+      StringScrubber.force_ssl_url("https://arxiv.org/src/#{arxiv_id}")
+    end
+
     def available_in_pdf?
       content_types.any? { |type| type == "application/pdf" }
     end
